@@ -69,7 +69,7 @@ print(ast)
 
 from asm_compiler import AsmCompiler
 
-compiler = AsmCompiler("nigga.asm")
+compiler = AsmCompiler("output.asm")
 output_file = compiler.compile(ast)
 print(f"\nAssembly code written to {output_file}")
 print("To compile and run, use these commands:")

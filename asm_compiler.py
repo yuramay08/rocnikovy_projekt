@@ -21,18 +21,24 @@ class AsmCompiler:
             "section .bss",
         ])
 
+        isVariable = False
         # First pass - identify all variables
         for node in ast:
             # print(node)
             if node[0] == "assign":
+                isVariable = True
                 var_name = node[1]
                 if var_name not in self.variables:
                     self.variables[var_name] = f"var_{self.var_counter}"
                     self.output.append(f"    {self.variables[var_name]} resq 1")
                     self.var_counter += 1
-        
-        self.variables[var_name] = f"var_{self.var_counter}"
-        self.output.append(f"    {self.variables[var_name]} resq 1")
+        if isVariable:
+            yeet = self.variables[var_name]
+            self.variables[var_name] = f"var_{self.var_counter}"
+            self.output.append(f"    {self.variables[var_name]} resq 1") #reserve for PRINT's
+            self.variables[var_name] = yeet
+        else:
+            self.output.append(f"    var_0 resq 1")
 
         # print(self.variables)
         # time.sleep(3)
@@ -96,7 +102,9 @@ class AsmCompiler:
                 return self.variables.get(target, target)
             else:  # Otherwise create a temp variable
                 temp_var = f"var_{self.var_counter}"
-                # self.var_counter += 1
+                if str(value) in self.variables:
+                    return self.variables[str(value)]
+                self.output.append(f"    mov qword [rel {temp_var}], {value}")
                 return temp_var
                 
         elif expr_type == "binop":

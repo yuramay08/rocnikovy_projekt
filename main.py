@@ -55,7 +55,7 @@ def main():
     
     parser = Parser(tokens)
     ast = parser.parse()
-    # print(ast)
+    print(ast)
     
     output_name = filename.split('.')[0] + ".asm"
     compiler = AsmCompiler(output_name)
@@ -66,6 +66,7 @@ def main():
     print(f"nasm -f win64 {output_file} -o {output_file.replace('.asm', '.obj')}")
     print(f"gcc {output_file.replace('.asm', '.obj')} -o {output_file.replace('.asm', '.exe')}")
     print(f"{output_file.replace('.asm', '.exe')}")
+    print("*You might need to install nasm and gcc from external source first.")
 
 if __name__ == "__main__":
     main()

@@ -1,15 +1,15 @@
 import time
 class AsmCompiler:
     def __init__(self, target_file="output.asm"):
-        print("__init__")
+        # print("__init__")
         self.target_file = target_file
         self.output = []
         self.variables = {}
         self.var_counter = 0
 
     def compile(self, ast):
-        time.sleep(3)
-        print("compile")
+        # time.sleep(3)
+        # print("compile")
         # Clear previous output
         self.output = []
 
@@ -23,7 +23,7 @@ class AsmCompiler:
 
         # First pass - identify all variables
         for node in ast:
-            print(node)
+            # print(node)
             if node[0] == "assign":
                 var_name = node[1]
                 if var_name not in self.variables:
@@ -66,7 +66,7 @@ class AsmCompiler:
     
     def compile_node(self, node):
         # time.sleep(3)
-        print("compile_node")
+        # print("compile_node")
         node_type = node[0]
         
         if node_type == "assign":
@@ -86,7 +86,7 @@ class AsmCompiler:
     
     def compile_expression(self, expr, target=None):
         # time.sleep(3)
-        print("compile_expression")
+        # print("compile_expression")
         expr_type = expr[0]
         
         if expr_type == "literal":

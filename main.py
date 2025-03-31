@@ -50,8 +50,6 @@ def main():
     
     # Compile the code
     tokens = tokenize(code)
-    # for token in tokens:
-    #     print(token)
     
     parser = Parser(tokens)
     ast = parser.parse()

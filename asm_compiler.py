@@ -8,8 +8,6 @@ class AsmCompiler:
         self.var_counter = 0
 
     def compile(self, ast):
-        # time.sleep(3)
-        # print("compile")
         # Clear previous output
         self.output = []
 
@@ -22,9 +20,8 @@ class AsmCompiler:
         ])
 
         isVariable = False
-        # First pass - identify all variables
+        # Identify all variables
         for node in ast:
-            # print(node)
             if node[0] == "assign":
                 isVariable = True
                 var_name = node[1]
@@ -40,8 +37,6 @@ class AsmCompiler:
         else:
             self.output.append(f"    var_0 resq 1")
 
-        # print(self.variables)
-        # time.sleep(3)
         # Start code section
         self.output.extend([
             
@@ -71,8 +66,6 @@ class AsmCompiler:
         return self.target_file
     
     def compile_node(self, node):
-        # time.sleep(3)
-        # print("compile_node")
         node_type = node[0]
         
         if node_type == "assign":
@@ -91,8 +84,6 @@ class AsmCompiler:
             ])
     
     def compile_expression(self, expr, target=None):
-        # time.sleep(3)
-        # print("compile_expression")
         expr_type = expr[0]
         
         if expr_type == "literal":

@@ -23,7 +23,9 @@ main:
     xor rax, rax
     call printf
     ; Print value
-    mov qword [rel var_1], 75
+    mov rax, 80
+    sub rax, [rel var_0]
+    mov [rel var_1], rax
     mov rdx, [rel var_1]
     lea rcx, [rel format_int]
     xor rax, rax

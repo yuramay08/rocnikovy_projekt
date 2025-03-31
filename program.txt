@@ -1,4 +1,4 @@
 LET x = 70
 PRINT x
 PRINT 100
-PRINT 75
+PRINT 80 - x

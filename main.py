@@ -1,5 +1,5 @@
 import re, time, sys
-from tokenizer___ import Token
+from token_ import Token
 from parser import Parser
 from asm_compiler import AsmCompiler
 
@@ -49,15 +49,24 @@ def main():
         return
     
     # Compile the code
+    start = time.perf_counter()
     tokens = tokenize(code)
+    end = time.perf_counter()
+    print(f"Trvanie: {end - start:.6f} sekúnd")
     
+    start = time.perf_counter()
     parser = Parser(tokens)
     ast = parser.parse()
-    print(ast)
+    end = time.perf_counter()
+    # print(ast)
+    print(f"Trvanie: {end - start:.6f} sekúnd")
     
+    start = time.perf_counter()
     output_name = filename.split('.')[0] + ".asm"
     compiler = AsmCompiler(output_name)
     output_file = compiler.compile(ast)
+    end = time.perf_counter()
+    print(f"Trvanie: {end - start:.6f} sekúnd")
     
     print(f"\nAssembly code written to {output_file}")
     print("To compile and run, use these commands:")
